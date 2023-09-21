@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_reservation/home_page.dart';
+import 'package:restaurant_reservation/login_page.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -7,10 +7,10 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Restaurant Reservation',
+      title: 'EasyTable',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.blueGrey),
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }
