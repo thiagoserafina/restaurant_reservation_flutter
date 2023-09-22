@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_reservation/pages/login_page.dart';
 
 void main() {
-  runApp(AppWidget());
+  runApp(const AppWidget());
 }
 
 class AppWidget extends StatelessWidget {
@@ -9,13 +10,14 @@ class AppWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: const Center(
-      child: Text(
-        'Hello World',
-        textDirection: TextDirection.rtl,
-        style: TextStyle(color: Colors.white, fontSize: 50.0),
+    return MaterialApp(
+      title: 'EasyTable',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        useMaterial3: true,
       ),
-    ));
+      home: const LoginPage(),
+    );
   }
 }
