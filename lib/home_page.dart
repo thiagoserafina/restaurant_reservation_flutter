@@ -1,94 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_reservation/home_screen.dart';
-import 'package:restaurant_reservation/login_page.dart';
-import 'package:restaurant_reservation/profile_screen.dart';
-import 'package:restaurant_reservation/reservation_screen.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() {
-    return HomePageState();
-  }
-}
-
-class HomePageState extends State<HomePage> {
-  int _currentPageIndex = 0;
-
-  final List<Widget> _pages = [
-    const HomeScreen(),
-    const ReservationScreen(),
-    const ProfileScreen(),
-  ];
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white10,
-        shadowColor: Colors.transparent,
-        title: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            IconButton(
-                tooltip: 'Home',
-                splashRadius: 20,
-                iconSize: 25,
-                icon: const Icon(
-                  Icons.restaurant_menu_rounded,
-                  color: Colors.black,
-                ),
-                onPressed: () {}),
-            const Text(
-              'EasyTable',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontFamily: 'Satisfy',
-                  letterSpacing: 5),
-            ),
-          ],
-        ),
-        centerTitle: true,
-        titleSpacing: 10,
-        actions: [
-          IconButton(
-              tooltip: 'Log out',
-              splashRadius: 20,
-              iconSize: 25,
-              icon: const Icon(
-                Icons.logout,
-                color: Colors.black,
-              ),
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) => const LoginPage(),
+    return ListView(
+      padding: const EdgeInsets.all(15),
+      children: [
+        Center(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              SizedBox(
+                width: 150,
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                );
-              }),
-        ],
-      ),
-      body: _pages[_currentPageIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.table_restaurant_rounded), label: 'Reservation'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
-        ],
-        currentIndex: _currentPageIndex,
-        selectedFontSize: 12,
-        onTap: (value) {
-          setState(() {
-            _currentPageIndex = value;
-          });
-        },
-      ),
+                  child: Column(
+                    children: [
+                      Image.network(
+                        'https://media-cdn.tripadvisor.com/media/photo-s/27/9f/45/bc/restaurant.jpg',
+                        width: 150,
+                      ),
+                      const ListTile(
+                        title: Text('Restaurant 1'),
+                        subtitle: Text('Location 1'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              SizedBox(
+                width: 150,
+                child: Card(
+                  clipBehavior: Clip.antiAlias,
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      Image.network(
+                        'https://media-cdn.tripadvisor.com/media/photo-s/27/9f/45/bc/restaurant.jpg',
+                        width: 150,
+                      ),
+                      const ListTile(
+                        title: Text('Restaurant 2'),
+                        subtitle: Text('Location 2'),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

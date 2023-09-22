@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+class ReservationPage extends StatelessWidget {
+  const ReservationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Text('Profile Screen'),
+      child: Text('Reservation Page'),
     );
   }
 }
