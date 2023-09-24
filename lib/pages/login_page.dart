@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_reservation/app_widget.dart';
-import 'package:restaurant_reservation/pages/register_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -114,11 +112,7 @@ class _LoginPageState extends State<LoginPage> {
                       return;
                     }
 
-                    Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(
-                        builder: (context) => const AppWidget(),
-                      ),
-                    );
+                    Navigator.of(context).pushReplacementNamed('/app');
                   },
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all(
@@ -151,11 +145,7 @@ class _LoginPageState extends State<LoginPage> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const RegisterPage(),
-                  ),
-                );
+                Navigator.of(context).pushNamed('/register');
               },
               child: const Text(
                 'Sign up',

@@ -3,16 +3,16 @@ import 'package:restaurant_reservation/pages/home_page.dart';
 import 'package:restaurant_reservation/pages/profile_page.dart';
 import 'package:restaurant_reservation/pages/reservation_page.dart';
 
-class AppWidget extends StatefulWidget {
-  const AppWidget({super.key});
+class AppContainer extends StatefulWidget {
+  const AppContainer({super.key});
 
   @override
-  State<AppWidget> createState() {
+  State<AppContainer> createState() {
     return AppState();
   }
 }
 
-class AppState extends State<AppWidget> {
+class AppState extends State<AppContainer> {
   int _currentPageIndex = 0;
 
   final List<Widget> _pages = [
