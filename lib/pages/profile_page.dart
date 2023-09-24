@@ -21,14 +21,19 @@ class ProfilePageState extends State<ProfilePage> {
           Column(
             children: [
               Card(
-                clipBehavior: Clip.antiAlias,
-                shape: const CircleBorder(),
-                margin: const EdgeInsets.only(top: 20, bottom: 20),
-                child: Image.network(
-                  'https://avatars.githubusercontent.com/u/85206010?v=4',
-                  width: 150,
-                ),
-              ),
+                  clipBehavior: Clip.antiAlias,
+                  shape: const CircleBorder(),
+                  margin: const EdgeInsets.only(top: 20, bottom: 20),
+                  child: Image.network(
+                    'https://avatars.githubusercontent.com/u/85206010?v=4',
+                    width: 150,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Image.asset(
+                        'assets/images/profile_placeholder.jpg',
+                        width: 150,
+                      );
+                    },
+                  )),
               const Text(
                 'Thiago Serafina',
                 style: TextStyle(fontSize: 20),
@@ -83,24 +88,17 @@ class ProfilePageState extends State<ProfilePage> {
               ),
             ],
           ),
-          SizedBox(
-            width: 150,
-            child: ElevatedButton.icon(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const LoginPage(),
-                    ),
-                  );
-                },
-                icon: const Icon(Icons.logout),
-                label: const Text('Log out'),
-                style: ButtonStyle(
-                  fixedSize: MaterialStateProperty.all(const Size(150, 35)),
-                  surfaceTintColor:
-                      MaterialStateProperty.all(Colors.transparent),
-                  shadowColor: MaterialStateProperty.all(Colors.transparent),
-                )),
+          TextButton.icon(
+            onPressed: () {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (context) => const LoginPage(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.logout),
+            label: const Text('Log out'),
+            style: const ButtonStyle(splashFactory: NoSplash.splashFactory),
           )
         ],
       ),
