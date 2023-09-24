@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_reservation/pages/login_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -90,11 +89,7 @@ class ProfilePageState extends State<ProfilePage> {
           ),
           TextButton.icon(
             onPressed: () {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => const LoginPage(),
-                ),
-              );
+              Navigator.of(context).pushReplacementNamed('/');
             },
             icon: const Icon(Icons.logout),
             label: const Text('Log out'),
