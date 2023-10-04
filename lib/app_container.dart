@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:restaurant_reservation/pages/home_page.dart';
-import 'package:restaurant_reservation/pages/profile_page.dart';
-import 'package:restaurant_reservation/pages/reservation_page.dart';
+import 'package:restaurant_reservation/app/views/home_view.dart';
+import 'package:restaurant_reservation/app/views/profile_view.dart';
+import 'package:restaurant_reservation/app/views/reservation_view.dart';
 
 class AppContainer extends StatefulWidget {
   const AppContainer({super.key});
@@ -16,9 +16,9 @@ class AppState extends State<AppContainer> {
   int _currentPageIndex = 0;
 
   final List<Widget> _pages = [
-    const HomePage(),
-    const ReservationPage(),
-    const ProfilePage(),
+    const HomeView(),
+    const ReservationView(),
+    const ProfileView(),
   ];
 
   @override
