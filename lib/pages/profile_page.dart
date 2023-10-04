@@ -42,41 +42,60 @@ class ProfilePageState extends State<ProfilePage> {
                 children: [
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: ElevatedButton.icon(
+                    child: TextButton.icon(
                         onPressed: () {},
                         icon: const Icon(Icons.person),
-                        label: const Text('Edit profile'),
+                        label: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Edit profile'),
+                              Icon(Icons.arrow_forward_ios_rounded)
+                            ]),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,
                             shadowColor: Colors.transparent,
                             foregroundColor: Colors.black,
+                            padding: const EdgeInsets.only(left: 10, right: 10),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.0),
                             ))),
                   ),
+                  const SizedBox(height: 10),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: ElevatedButton.icon(
+                    child: TextButton.icon(
                         onPressed: () {},
                         icon: const Icon(Icons.shopping_bag_rounded),
-                        label: const Text('My reservations'),
+                        label: const Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('My reservations'),
+                              Icon(Icons.arrow_forward_ios_rounded)
+                            ]),
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.transparent,
                             shadowColor: Colors.transparent,
                             foregroundColor: Colors.black,
+                            padding: const EdgeInsets.only(left: 10, right: 10),
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0)))),
                   ),
+                  const SizedBox(height: 10),
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: ElevatedButton.icon(
+                    child: TextButton.icon(
                       onPressed: () {},
                       icon: const Icon(Icons.settings),
-                      label: const Text('Account settings'),
+                      label: const Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text('Settings'),
+                            Icon(Icons.arrow_forward_ios_rounded)
+                          ]),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
                         shadowColor: Colors.transparent,
                         foregroundColor: Colors.black,
+                        padding: const EdgeInsets.only(left: 10, right: 10),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.0),
                         ),
