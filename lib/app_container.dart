@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_reservation/app/views/home_view.dart';
 import 'package:restaurant_reservation/app/views/profile_view.dart';
 import 'package:restaurant_reservation/app/views/reservation_view.dart';
+import 'package:restaurant_reservation/app/views/settings_view.dart';
 
 class AppContainer extends StatefulWidget {
   const AppContainer({super.key});
@@ -19,6 +20,7 @@ class AppState extends State<AppContainer> {
     const HomeView(),
     const ReservationView(),
     const ProfileView(),
+    const SettingsView()
   ];
 
   @override
@@ -61,31 +63,77 @@ class AppState extends State<AppContainer> {
             )),
       ),
       body: _pages[_currentPageIndex],
-      bottomNavigationBar: Theme(
-        data: Theme.of(context).copyWith(
-          // Set splashColor and splashRadius to transparent values to remove the splash animation
-          splashColor: Colors.transparent,
-          highlightColor: Colors.black12,
-          splashFactory: InkSplash.splashFactory,
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.white,
-          type: BottomNavigationBarType.fixed,
-          enableFeedback: true,
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.table_restaurant_rounded),
-                label: 'Reservation'),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blueGrey,
+              ),
+              margin: EdgeInsets.all(0),
+              padding: EdgeInsets.all(0),
+              child: UserAccountsDrawerHeader(
+                  accountName: Text("Thiago"),
+                  margin: EdgeInsets.all(0),
+                  decoration: BoxDecoration(color: Colors.transparent),
+                  arrowColor: Colors.black87,
+                  currentAccountPicture: CircleAvatar(
+                    backgroundImage: NetworkImage(
+                        'https://avatars.githubusercontent.com/u/85206010?v=4'),
+                  ),
+                  accountEmail: Text("thiago.serafina@outlook.com")),
+            ),
+            ListTile(
+              leading: const Icon(Icons.home_rounded),
+              title: const Text('Home'),
+              onTap: () {
+                setState(() {
+                  _currentPageIndex = 0;
+                });
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.shopping_bag_rounded),
+              title: const Text('My reservations'),
+              onTap: () {
+                setState(() {
+                  _currentPageIndex = 1;
+                });
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.person),
+              title: const Text('Profile'),
+              onTap: () {
+                setState(() {
+                  _currentPageIndex = 2;
+                });
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading: const Icon(Icons.settings),
+              title: const Text('Settings'),
+              onTap: () {
+                setState(() {
+                  _currentPageIndex = 3;
+                });
+                Navigator.pop(context);
+              },
+            ),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.42),
+            TextButton.icon(
+              onPressed: () {
+                Navigator.of(context).pushReplacementNamed('/');
+              },
+              icon: const Icon(Icons.logout),
+              label: const Text('Log out'),
+              style: const ButtonStyle(splashFactory: NoSplash.splashFactory),
+            )
           ],
-          currentIndex: _currentPageIndex,
-          selectedFontSize: 12,
-          onTap: (value) {
-            setState(() {
-              _currentPageIndex = value;
-            });
-          },
         ),
       ),
     );
