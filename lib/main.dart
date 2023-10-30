@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_reservation/app/views/settings_view.dart';
 import 'package:restaurant_reservation/app_container.dart';
 import 'package:restaurant_reservation/app/views/home_view.dart';
 import 'package:restaurant_reservation/app/views/login_view.dart';
@@ -32,6 +33,7 @@ class AppWidget extends StatelessWidget {
         '/home': (context) => const HomeView(),
         '/reservation': (context) => const ReservationView(),
         '/profile': (context) => const ProfileView(),
+        '/settings': (context) => const SettingsView(),
       },
     );
   }

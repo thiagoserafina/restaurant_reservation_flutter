@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -8,55 +10,79 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  String ticket = '';
+
+  readQRCode() async {
+    String code = await FlutterBarcodeScanner.scanBarcode(
+      "#ff6666",
+      "Cancelar",
+      false,
+      ScanMode.QR,
+    );
+
+    setState(
+        () => ticket = code != '-1' ? code : 'Não foi possível ler o QRCode');
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 15, 15, 0),
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text(
-              'Select a table',
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+            Column(
+              children: [
+                Card(
+                  clipBehavior: Clip.antiAlias,
+                  margin: const EdgeInsets.fromLTRB(0, 20, 0, 20),
+                  shadowColor: Colors.transparent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Column(
+                    children: [
+                      SvgPicture.asset('assets/images/tableHome.svg',
+                          height: MediaQuery.of(context).size.height * 0.25),
+                    ],
+                  ),
+                ),
+                const Text(
+                  'Bem-vindo ao EasyTable!',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Para começar, leia o QRCode utilizando o botão abaixo',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.black54,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                SvgPicture.asset('assets/images/scanHome.svg',
+                    height: MediaQuery.of(context).size.height * 0.2),
+              ],
             ),
-            const SizedBox(height: 10),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                children: List.generate(30, (index) {
-                  return SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.45,
-                    child: Card(
-                      clipBehavior: Clip.antiAlias,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 100,
-                            width: MediaQuery.of(context).size.width * 0.45,
-                            child: Image.network(
-                              'https://media-cdn.tripadvisor.com/media/photo-s/27/9f/45/bc/restaurant.jpg',
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          ListTile(
-                            title: const Text('Table 2'),
-                            subtitle: const Text('\$ 200'),
-                            onTap: () {
-                              setState(() {});
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton.icon(
+                  onPressed: readQRCode,
+                  icon: const Icon(Icons.qr_code_rounded),
+                  label: const Text('Ler QRCode'),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
+                    foregroundColor: MaterialStateProperty.all(Colors.white),
+                  ),
+                ),
+              ],
             )
           ],
         ),
